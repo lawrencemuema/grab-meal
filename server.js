@@ -4,8 +4,16 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path')
 
-// Import your route files
-const restaurantRoutes = require('./routes/restaurant_R');
+// Import all controllers
+const restaurantRoutes = require('./controllers/restaurant_C');
+const userRoutes = require('./controllers/user_C');
+const authenticationRoutes = require('./controllers/authentication_C');
+const orderFunctionRoutes = require('./controllers/order_function_C');
+const menuItemRoutes = require('./controllers/menu_item_C');
+const orderDetailRoutes = require('./controllers/order_detail_C');
+const deliveryRoutes = require('./controllers/delivery_C');
+const paymentRoutes = require('./controllers/payment_C');
+const reviewRoutes = require('./controllers/review_C');
 
 
 const app = express();
@@ -14,7 +22,15 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Define your route handlers
-app.use('/restaurant',restaurantRoutes);
+app.use('/restaurant', restaurantRoutes);
+app.use('/customer', userRoutes);
+app.use('/auth', authenticationRoutes);
+app.use('/order', orderFunctionRoutes);
+app.use('/menu', menuItemRoutes);
+app.use('/delivery', deliveryRoutes);
+app.use('/payment', paymentRoutes);
+app.use('/review', reviewRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('Welcome to the grab-meal API');
